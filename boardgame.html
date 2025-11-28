@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Board Game — Find Yourself</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Find Yourself</a>
+        <div class="nav-links">
+          <a href="index.html">Tes</a>
+          <a href="quest.html">Quest Harian</a>
+          <a href="boardgame.html">Board Game</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page">
+      <div class="card">
+        <header class="card-header">
+          <h1>Board Game (Printable)</h1>
+          <p class="lead">Cara menghubungkan hasil tes ke board game dan papan 5x5 sederhana.</p>
+        </header>
+
+        <section>
+          <h3>Penjelasan singkat</h3>
+          <p class="small">Setelah menyelesaikan tes, kategori tertinggi akan tersimpan. Gunakan kategori itu untuk memilih jenis tantangan di board game. Contoh: kategori <strong>Visual</strong> → tantangan menggambar; <strong>Logika</strong> → teka-teki singkat.</p>
+
+          <h3>Template papan 5x5</h3>
+          <p class="small">Klik "Isi Otomatis" untuk mengisi sel dengan tantangan singkat; klik "Print" untuk mencetak.</p>
+
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <button id="fill-btn">Isi Otomatis</button>
+            <button id="print-btn">Print</button>
+          </div>
+
+          <div style="position:relative">
+            <table class="board" id="board">
+              <!-- 5x5 grid akan diisi oleh JavaScript -->
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      // small pool of challenges
+      const pool = [
+        'Gambar benda di meja selama 5 menit', 'Ceritakan 1 fakta menarik tentang dirimu', 'Selesaikan teka-teki 3 langkah',
+        'Ajak teman bermain 10 menit', 'Buat 1 kalimat puitis', 'Lakukan 10 lompatan', 'Rancang logo sederhana',
+        'Susun 3 soal matematika', 'Buat teka silang mini', 'Ceritakan ide proyek singkat', 'Buat kerajinan kertas',
+        'Mainkan permainan peran 5 menit', 'Catat 3 tujuan minggu ini', 'Tebak gambar teman', 'Buat daftar bakatmu',
+        'Tantangan kestabilan fisik 20 detik', 'Rancang poster mini', 'Jawab kuis logika singkat', 'Berlatih public speaking 1 menit',
+        'Tulis cerita 50 kata', 'Buat model dari kertas', 'Temukan 3 benda berwarna biru', 'Buat gerakan tarian 4 langkah',
+        'Buat sketsa cepat', 'Buat teka-teki matematika sederhana'
+      ];
+
+      const boardEl = document.getElementById('board');
+      const fillBtn = document.getElementById('fill-btn');
+      const printBtn = document.getElementById('print-btn');
+
+      function makeEmptyBoard(){
+        boardEl.innerHTML = '';
+        for(let r=0;r<5;r++){
+          const tr = document.createElement('tr');
+          for(let c=0;c<5;c++){
+            const td = document.createElement('td');
+            td.textContent = '';
+            tr.appendChild(td);
+          }
+          boardEl.appendChild(tr);
+        }
+      }
+
+      fillBtn.addEventListener('click', ()=>{
+        // fill with random challenges
+        const cells = boardEl.querySelectorAll('td');
+        cells.forEach((cell,i)=>{
+          const r = Math.floor(Math.random()*pool.length);
+          cell.textContent = pool[r];
+        });
+      });
+
+      printBtn.addEventListener('click', ()=> window.print());
+
+      // init
+      makeEmptyBoard();
+    </script>
+  </body>
+</html>

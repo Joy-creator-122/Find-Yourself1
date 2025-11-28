@@ -1,0 +1,42 @@
+/* style.css - Minimalist, modern, and kid-friendly */
+:root{
+  --bg:#f3f6f9;
+  --card:#ffffff;
+  --accent:#2563eb;
+  --text:#0f172a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);color:var(--text)}
+
+.nav{background:transparent;padding:12px 16px}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;color:var(--text);text-decoration:none}
+.nav-links a{margin-left:12px;color:#334155;text-decoration:none}
+
+.page{min-height:72vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:760px;background:var(--card);border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06);padding:24px}
+.card-header h1{margin:0 0 6px;font-size:22px}
+.lead{margin:0 0 18px;color:#475569}
+#quiz-container{margin-bottom:16px}
+.question{font-weight:600;margin-bottom:12px}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;border:1px solid #eef2ff;cursor:pointer;background:#fff}
+.option input{accent-color:var(--accent)}
+.option:hover{background:#fbfdff}
+.controls{display:flex;justify-content:flex-end}
+#next-btn{background:var(--accent);border:none;color:white;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+#next-btn:disabled{opacity:0.5;cursor:default}
+.result{padding:12px;border-radius:8px;border:1px solid #e6eefc;background:#fbfdff}
+.hidden{display:none}
+.small{font-size:14px;color:#334155}
+.restart{margin-top:12px;background:#e2e8f0;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+.footer{max-width:900px;margin:18px auto 36px;color:#64748b;text-align:center}
+
+/* Board game printable grid */
+.board{width:100%;max-width:700px;margin:12px auto;border-collapse:collapse}
+.board td{width:20%;height:90px;border:1px solid #dbeafe;padding:6px;text-align:center;vertical-align:middle}
+.board .cell-number{position:absolute;opacity:0.3;font-size:12px}
+
+@media (max-width:520px){.card{padding:18px}.card-header h1{font-size:18px}}
+

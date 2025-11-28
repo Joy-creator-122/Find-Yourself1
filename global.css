@@ -1,0 +1,85 @@
+/* global.css - Theme and UI system for Find Yourself */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root{
+  --bg: #F6F7FB;
+  --card: #FFFFFF;
+  --muted: #64748B;
+  --accent: #6C63FF;
+  --accent-2: #A393EB;
+  --text: #0f172a;
+  --radius: 14px;
+  --glass: rgba(255,255,255,0.6);
+}
+
+[data-theme="dark"]{
+  --bg: #0b1020;
+  --card: #0f172a;
+  --muted: #94a3b8;
+  --accent: #8b5cf6;
+  --accent-2: #7c3aed;
+  --text: #E6EEF9;
+  --glass: rgba(16,24,40,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial}
+
+/* App layout */
+.app{min-height:100vh;display:flex;flex-direction:column}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+
+/* Navbar */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:transparent}
+.nav .brand{font-weight:700;color:var(--text);text-decoration:none}
+.nav .links a{margin-left:12px;color:var(--muted);text-decoration:none}
+.nav .actions{display:flex;gap:8px;align-items:center}
+
+/* card component */
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 10px 30px rgba(12,18,50,0.06);}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:600}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+.btn-ghost{background:transparent;border:1px solid rgba(99,102,241,0.12);color:var(--text)}
+.btn-circle{width:40px;height:40px;border-radius:10px;display:inline-grid;place-items:center}
+
+.small{font-size:13px;color:var(--muted)}
+
+/* cards layout */
+.row{display:flex;gap:16px}
+.col{flex:1}
+
+/* avatar selector */
+.avatar-picker{display:flex;gap:10px;flex-wrap:wrap}
+.avatar{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid transparent}
+.avatar.selected{box-shadow:0 6px 16px rgba(12,18,50,0.12);border-color:var(--accent)}
+
+/* progress bar */
+.progress{width:100%;background:linear-gradient(180deg,rgba(99,102,241,0.06),transparent);padding:8px;border-radius:10px}
+.progress .bar{height:12px;background:#eef2ff;border-radius:8px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 420ms cubic-bezier(.22,.9,.35,1)}
+
+/* quiz options */
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{padding:12px;border-radius:12px;background:var(--card);border:1px solid rgba(99,102,241,0.06);cursor:pointer;display:flex;align-items:center;gap:10px}
+.option input{accent-color:var(--accent)}
+
+/* popup */
+.popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:40;width:min(560px,92%);}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.tile{background:var(--card);padding:12px;border-radius:10px;display:flex;align-items:center;justify-content:center;min-height:64px}
+
+/* dice animation */
+.dice{width:48px;height:48px;border-radius:10px;background:var(--card);display:grid;place-items:center;font-weight:700;box-shadow:0 8px 18px rgba(12,18,50,0.06)}
+
+/* small utilities */
+.muted{color:var(--muted)}
+.hidden{display:none}
+
+/* transitions */
+.fade-in{animation:fadeIn .45s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+@media (max-width:760px){.options{grid-template-columns:1fr}.row{flex-direction:column}}

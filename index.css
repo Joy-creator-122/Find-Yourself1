@@ -1,0 +1,29 @@
+/* index.css - Opening screen styling (enhanced) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Button interactions */
+.btn-primary{ cursor: pointer; border: none; transition: all 240ms ease; }
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(108, 99, 255, 0.25); }
+.btn-primary:active{ transform: translateY(0); }
+.btn-primary.pulse{ animation: pulse-anim 220ms ease; }
+@keyframes pulse-anim{ 0%{ transform: scale(1); } 50%{ transform: scale(1.04); } 100%{ transform: scale(1); } }
+
+.btn-ghost{ cursor: pointer; border: 1px solid rgba(99, 102, 241, 0.12); background: transparent; color: var(--text); transition: all 180ms ease; }
+.btn-ghost:hover{ background: rgba(99, 102, 241, 0.06); }
+
+.btn-circle{ cursor: pointer; border: none; background: var(--card); transition: transform 280ms ease; }
+.btn-circle:hover{ transform: rotate(20deg); }
+
+/* Avatar picker */
+.avatar{ cursor: pointer; transition: all 180ms ease; }
+.avatar:hover{ transform: scale(1.08); box-shadow: 0 6px 16px rgba(108, 99, 255, 0.12); }
+.avatar.selected{ background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; }
+
+.fy-avatar{ transition: all 180ms ease; }
+
+.container{ max-width: 1000px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+
+/* opening page */
+.opening{ min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px; }
+
+@media (max-width: 520px){ .card{ padding: 20px; } .card h1{ font-size: 24px; } }

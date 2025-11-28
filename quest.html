@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quest Harian — Find Yourself</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Find Yourself</a>
+        <div class="nav-links">
+          <a href="index.html">Tes</a>
+          <a href="quest.html">Quest Harian</a>
+          <a href="boardgame.html">Board Game</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page">
+      <div class="card">
+        <header class="card-header">
+          <h1>Quest Harian</h1>
+          <p class="lead">Dapatkan aktivitas singkat berdasarkan minatmu.</p>
+        </header>
+
+        <section id="quest-area">
+          <p class="small">Tekan tombol di bawah untuk menghasilkan quest hari ini.</p>
+          <div style="margin:10px 0">
+            <button id="gen-btn">Generate Quest</button>
+            <button id="rand-btn">Randomize</button>
+          </div>
+          <div id="quest-result" class="result hidden"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer small">Quest dibuat sederhana supaya bisa dikerjakan setiap hari.</footer>
+
+    <script>
+      // Quest lists per category (simple and short)
+      const quests = {
+        Linguistik: ['Tulis cerita 100 kata tentang sekolahmu', 'Buat puisi 4 baris tentang teman'],
+        Logika: ['Selesaikan teka-teki sudoku mini (4x4)', 'Buat 3 soal matematika sederhana untuk temanmu'],
+        Visual: ['Gambar objek di meja selama 10 menit', 'Desain poster kecil tentang hobi'],
+        Interpersonal: ['Ajak 1 teman bicara tentang hobi mereka', 'Buat pujian untuk 3 teman'],
+        Intrapersonal: ['Tuliskan 5 hal yang kamu suka dari dirimu', 'Buat rencana 3 langkah belajar minggu ini'],
+        Kinestetik: ['Berjalan cepat 15 menit atau coba gerakan olahraga baru', 'Buat kerajinan tangan sederhana']
+      };
+
+      const genBtn = document.getElementById('gen-btn');
+      const randBtn = document.getElementById('rand-btn');
+      const out = document.getElementById('quest-result');
+
+      function pickDaily(cat){
+        // deterministic pick based on today's date so result same sepanjang hari
+        const today = new Date().toISOString().slice(0,10); // YYYY-MM-DD
+        const list = quests[cat] || Object.values(quests).flat();
+        const seed = today.split('').reduce((s,ch)=>s+ch.charCodeAt(0),0);
+        const idx = seed % list.length;
+        return list[idx];
+      }
+
+      genBtn.addEventListener('click', ()=>{
+        const cat = localStorage.getItem('fy_topCategory');
+        const used = cat || 'Visual';
+        const q = pickDaily(used);
+        out.classList.remove('hidden');
+        out.innerHTML = `<h3>Quest untuk kategori: ${used}</h3><p class="small">${q}</p>`;
+      });
+
+      // Randomize different quest (non-deterministic)
+      randBtn.addEventListener('click', ()=>{
+        const pool = Object.values(quests).flat();
+        const r = Math.floor(Math.random()*pool.length);
+        out.classList.remove('hidden');
+        out.innerHTML = `<h3>Quest Random</h3><p class="small">${pool[r]}</p>`;
+      });
+    </script>
+  </body>
+</html>
